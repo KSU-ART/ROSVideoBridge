@@ -65,7 +65,7 @@ int main(int argc, char ** argv)
 
 			data.clear();
 			
-			image.clear();
+			image.release();
 
 		}
 		else
