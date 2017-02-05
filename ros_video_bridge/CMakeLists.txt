@@ -7,10 +7,12 @@ project(ros_video_bridge)
 find_package(catkin REQUIRED COMPONENTS
   roscpp
   std_msgs
+  roslaunch
 )
 
-find_package(OpenCV REQUIRED PATHS /root/opencv/cv3-release)
+find_package(OpenCV 3 REQUIRED)
 
+roslaunch_add_file_check(launch)
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
 
@@ -191,13 +193,14 @@ include_directories(
 #include_directories(include ${catkin_INCLUDE_DIRS})
 
 add_executable(talker src/talker.cpp)
-target_link_libraries(talker ${catkin_LIBRARIES})
-target_link_libraries(talker ${OpenCV_LIBRARIES})
-add_dependencies(talker tutorial_generate_message_cpp)
+target_link_libraries(talker
+  ${catkin_LIBRARIES}
+  ${OpenCV_LIBRARIES}
+)
 
 add_executable(listener src/listener.cpp)
-target_link_libraries(listener ${catkin_LIBRARIES})
-target_link_libraries(listener ${OpenCV_LIBRARIES})
-add_dependencies(listener tutorial_generate_message_cpp)
-
+target_link_libraries(listener
+  ${catkin_LIBRARIES}
+  ${OpenCV_LIBRARIES}
+)
 
