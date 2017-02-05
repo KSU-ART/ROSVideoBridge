@@ -64,9 +64,15 @@ int main(int argc, char ** argv)
 			ros::spinOnce();
 
 			data.clear();
+			
+			image.clear();
 
 		}
-
+		else
+		{
+			ROS_WARN("Camera image empty");
+		}
+		
 		sleepReconcile(loop_rate);
 
 	}
